@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Create your GreenSwing account. Subscribe, play golf, and support charities you love.">
+  <title>Create Account — GreenSwing</title>
+  <link rel="stylesheet" href="../css/global.css">
+  <link rel="stylesheet" href="../css/auth.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+
+  <div class="auth-page">
+    <div class="auth-container" style="max-width: 520px;">
+      <a href="../index.html" class="auth-logo" id="auth-logo">
+        <span class="logo-icon">⛳</span>
+        GreenSwing
+      </a>
+
+      <!-- Steps Indicator -->
+      <div class="auth-steps" id="auth-steps">
+        <div class="auth-step active" data-step="1">
+          <span class="auth-step-num">1</span>
+          <span class="auth-step-label hide-mobile">Account</span>
+        </div>
+        <div class="auth-step-connector"></div>
+        <div class="auth-step" data-step="2">
+          <span class="auth-step-num">2</span>
+          <span class="auth-step-label hide-mobile">Charity</span>
+        </div>
+        <div class="auth-step-connector"></div>
+        <div class="auth-step" data-step="3">
+          <span class="auth-step-num">3</span>
+          <span class="auth-step-label hide-mobile">Plan</span>
+        </div>
+      </div>
+
+      <div class="auth-card">
+        <!-- Step 1: Account Details -->
+        <div class="step-content active" id="step-1">
+          <div class="auth-header">
+            <h2>Create Account</h2>
+            <p>Start your journey with GreenSwing</p>
+          </div>
+
+          <form class="auth-form" id="register-form-step1">
+            <div class="form-group">
+              <label class="form-label" for="reg-name">Full Name</label>
+              <div class="form-input-icon">
+                <span class="icon"><i class="fas fa-user"></i></span>
+                <input type="text" class="form-input" id="reg-name" placeholder="John Smith" required>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="reg-email">Email Address</label>
+              <div class="form-input-icon">
+                <span class="icon"><i class="fas fa-envelope"></i></span>
+                <input type="email" class="form-input" id="reg-email" placeholder="you@example.com" required>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="reg-password">Password</label>
+              <div class="form-input-icon">
+                <span class="icon"><i class="fas fa-lock"></i></span>
+                <input type="password" class="form-input" id="reg-password" placeholder="Minimum 8 characters" required minlength="8">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="reg-confirm-password">Confirm Password</label>
+              <div class="form-input-icon">
+                <span class="icon"><i class="fas fa-lock"></i></span>
+                <input type="password" class="form-input" id="reg-confirm-password" placeholder="Repeat your password" required>
+              </div>
+            </div>
+
+            <button type="button" class="btn btn-primary btn-lg" id="step1-next" style="width: 100%;">
+              Next: Choose Charity
+              <i class="fas fa-arrow-right"></i>
+            </button>
+          </form>
+        </div>
+
+        <!-- Step 2: Charity Selection -->
+        <div class="step-content" id="step-2">
+          <div class="auth-header">
+            <h2>Choose Your Charity</h2>
+            <p>Select a charity to support with your subscription</p>
+          </div>
+
+          <div class="form-group" style="margin-bottom: var(--space-md);">
+            <div class="form-input-icon">
+              <span class="icon"><i class="fas fa-search"></i></span>
+              <input type="text" class="form-input" id="charity-search" placeholder="Search charities...">
+            </div>
+          </div>
+
+          <div class="charity-picker-grid" id="charity-picker">
+            <div class="charity-picker-item" data-charity="green-earth">
+              <div class="charity-emoji">🌍</div>
+              <h6>Green Earth Fund</h6>
+              <p>Environment & conservation</p>
+            </div>
+            <div class="charity-picker-item" data-charity="health-heroes">
+              <div class="charity-emoji">🏥</div>
+              <h6>Health Heroes UK</h6>
+              <p>NHS & medical research</p>
+            </div>
+            <div class="charity-picker-item" data-charity="future-minds">
+              <div class="charity-emoji">📚</div>
+              <h6>Future Minds</h6>
+              <p>Education access</p>
+            </div>
+            <div class="charity-picker-item" data-charity="paws-claws">
+              <div class="charity-emoji">🐾</div>
+              <h6>Paws & Claws</h6>
+              <p>Animal welfare</p>
+            </div>
+            <div class="charity-picker-item" data-charity="ocean-guard">
+              <div class="charity-emoji">🌊</div>
+              <h6>Ocean Guard</h6>
+              <p>Marine conservation</p>
+            </div>
+            <div class="charity-picker-item" data-charity="youth-sport">
+              <div class="charity-emoji">⚽</div>
+              <h6>Youth Sports Trust</h6>
+              <p>Youth sports programs</p>
+            </div>
+          </div>
+
+          <div class="charity-slider-group" style="margin-top: var(--space-xl);">
+            <label class="form-label">Charity Contribution</label>
+            <div class="charity-slider-display">
+              <span style="font-size: 0.85rem; color: var(--text-secondary);">Percentage of subscription</span>
+              <span class="charity-slider-value" id="charity-slider-value">10%</span>
+            </div>
+            <input type="range" class="charity-slider" id="charity-slider" min="10" max="50" value="10" step="5">
+          </div>
+
+          <div style="display: flex; gap: var(--space-md); margin-top: var(--space-xl);">
+            <button type="button" class="btn btn-outline" id="step2-back" style="flex: 1;">
+              <i class="fas fa-arrow-left"></i> Back
+            </button>
+            <button type="button" class="btn btn-primary" id="step2-next" style="flex: 2;">
+              Next: Choose Plan <i class="fas fa-arrow-right"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Step 3: Plan Selection -->
+        <div class="step-content" id="step-3">
+          <div class="auth-header">
+            <h2>Choose Your Plan</h2>
+            <p>Select the subscription that works for you</p>
+          </div>
+
+          <div class="plan-picker" id="plan-picker">
+            <div class="plan-picker-item" data-plan="monthly">
+              <h5>Monthly</h5>
+              <div class="price">£9.99</div>
+              <div class="period">/month</div>
+            </div>
+            <div class="plan-picker-item selected" data-plan="yearly">
+              <div class="badge badge-primary" style="margin-bottom: 8px;">Best Value</div>
+              <h5>Yearly</h5>
+              <div class="price">£89.99</div>
+              <div class="period">/year</div>
+              <div class="savings">Save £29.89!</div>
+            </div>
+          </div>
+
+          <div style="margin-top: var(--space-xl); padding: var(--space-md); background: var(--bg-glass); border-radius: var(--radius-md); border: 1px solid var(--border-default);">
+            <div style="display: flex; justify-content: space-between; margin-bottom: var(--space-sm); font-size: 0.9rem;">
+              <span style="color: var(--text-secondary);">Subscription</span>
+              <span id="summary-price" style="font-weight: 600;">£89.99/yr</span>
+            </div>
+            <div style="display: flex; justify-content: space-between; margin-bottom: var(--space-sm); font-size: 0.9rem;">
+              <span style="color: var(--text-secondary);">Charity donation (<span id="summary-percent">10</span>%)</span>
+              <span id="summary-charity" style="font-weight: 600; color: var(--primary-400);">£9.00</span>
+            </div>
+            <div style="display: flex; justify-content: space-between; padding-top: var(--space-sm); border-top: 1px solid var(--border-default); font-size: 0.9rem;">
+              <span style="color: var(--text-secondary);">Prize pool contribution</span>
+              <span id="summary-pool" style="font-weight: 600; color: var(--accent-400);">£80.99</span>
+            </div>
+          </div>
+
+          <div style="display: flex; gap: var(--space-md); margin-top: var(--space-xl);">
+            <button type="button" class="btn btn-outline" id="step3-back" style="flex: 1;">
+              <i class="fas fa-arrow-left"></i> Back
+            </button>
+            <button type="button" class="btn btn-primary" id="register-submit" style="flex: 2;">
+              <i class="fas fa-check-circle"></i> Create Account
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="auth-footer">
+        Already have an account? <a href="login.html" id="go-to-login">Sign in</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast-container" id="toast-container"></div>
+
+  <script src="../js/api.js"></script>
+  <script src="../js/app.js"></script>
+  <script src="../js/auth.js"></script>
+</body>
+</html>

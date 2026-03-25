@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="GreenSwing admin panel. Manage users, draws, charities, and verify winners.">
+  <title>Admin Panel — GreenSwing</title>
+  <link rel="stylesheet" href="../css/global.css">
+  <link rel="stylesheet" href="../css/dashboard.css">
+  <link rel="stylesheet" href="../css/admin.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+
+  <div class="dashboard-layout admin-layout">
+
+    <!-- Admin Sidebar -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <a href="../index.html" class="sidebar-logo">
+          <span class="logo-icon">⛳</span>
+          GreenSwing
+        </a>
+      </div>
+
+      <nav class="sidebar-nav">
+        <div class="sidebar-section-label">Admin</div>
+        <a href="#" class="sidebar-link active" data-page="admin-overview" id="admin-nav-overview">
+          <span class="icon"><i class="fas fa-chart-pie"></i></span>
+          Analytics
+        </a>
+        <a href="#" class="sidebar-link" data-page="admin-users" id="admin-nav-users">
+          <span class="icon"><i class="fas fa-users"></i></span>
+          Users
+          <span class="badge-count">2,450</span>
+        </a>
+        <a href="#" class="sidebar-link" data-page="admin-draws" id="admin-nav-draws">
+          <span class="icon"><i class="fas fa-dice"></i></span>
+          Draw Manager
+        </a>
+        <a href="#" class="sidebar-link" data-page="admin-charities" id="admin-nav-charities">
+          <span class="icon"><i class="fas fa-hand-holding-heart"></i></span>
+          Charities
+        </a>
+        <a href="#" class="sidebar-link" data-page="admin-winners" id="admin-nav-winners">
+          <span class="icon"><i class="fas fa-award"></i></span>
+          Verify Winners
+          <span class="badge-count" style="background: var(--error);">3</span>
+        </a>
+
+        <div class="sidebar-section-label">System</div>
+        <a href="#" class="sidebar-link" data-page="admin-payments" id="admin-nav-payments">
+          <span class="icon"><i class="fas fa-receipt"></i></span>
+          Payments
+        </a>
+        <a href="#" class="sidebar-link" id="admin-nav-settings">
+          <span class="icon"><i class="fas fa-cog"></i></span>
+          Settings
+        </a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="sidebar-user">
+          <div class="sidebar-user-avatar" style="background: var(--gradient-accent);">AD</div>
+          <div class="sidebar-user-info">
+            <div class="sidebar-user-name">Admin User</div>
+            <div class="sidebar-user-email">admin@greenswing.com</div>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <header class="main-header">
+        <div class="main-header-left">
+          <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Toggle sidebar">
+            <i class="fas fa-bars"></i>
+          </button>
+          <h1 class="page-title" id="admin-page-title">Analytics Dashboard</h1>
+        </div>
+        <div class="main-header-right">
+          <div class="header-search">
+            <span class="search-icon"><i class="fas fa-search"></i></span>
+            <input type="text" placeholder="Search users, draws..." id="admin-search">
+          </div>
+          <button class="header-notification" id="admin-notifications" aria-label="Notifications">
+            <i class="fas fa-bell"></i>
+            <span class="dot"></span>
+          </button>
+        </div>
+      </header>
+
+      <div class="dashboard-content" id="admin-content">
+
+        <!-- Admin Overview -->
+        <div class="dashboard-page active" id="page-admin-overview">
+          <!-- Stats -->
+          <div class="admin-stats-grid stagger-children">
+            <div class="stat-card card">
+              <div class="stat-icon green"><i class="fas fa-users"></i></div>
+              <div class="stat-info">
+                <div class="stat-label">Total Users</div>
+                <div class="stat-value">2,450</div>
+                <div class="stat-change positive"><i class="fas fa-arrow-up"></i> +128 this month</div>
+              </div>
+            </div>
+            <div class="stat-card card">
+              <div class="stat-icon gold"><i class="fas fa-sterling-sign"></i></div>
+              <div class="stat-info">
+                <div class="stat-label">Monthly Revenue</div>
+                <div class="stat-value">£18.4K</div>
+                <div class="stat-change positive"><i class="fas fa-arrow-up"></i> +12.5%</div>
+              </div>
+            </div>
+            <div class="stat-card card">
+              <div class="stat-icon blue"><i class="fas fa-heart"></i></div>
+              <div class="stat-info">
+                <div class="stat-label">Charity Donations</div>
+                <div class="stat-value">£2.1K</div>
+                <div class="stat-change positive"><i class="fas fa-arrow-up"></i> This month</div>
+              </div>
+            </div>
+            <div class="stat-card card">
+              <div class="stat-icon pink"><i class="fas fa-trophy"></i></div>
+              <div class="stat-info">
+                <div class="stat-label">Active Winners</div>
+                <div class="stat-value">14</div>
+                <div class="stat-change negative"><i class="fas fa-clock"></i> 3 pending verification</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Charts Grid -->
+          <div class="admin-charts-grid">
+            <div class="chart-card card">
+              <div class="section-card-header">
+                <h3>Revenue Overview</h3>
+                <div class="admin-table-filters">
+                  <button class="filter-chip active">6M</button>
+                  <button class="filter-chip">1Y</button>
+                  <button class="filter-chip">All</button>
+                </div>
+              </div>
+              <div class="mini-chart" style="height: 180px;">
+                <div class="mini-chart-bar" style="height: 40%;"></div>
+                <div class="mini-chart-bar" style="height: 55%;"></div>
+                <div class="mini-chart-bar" style="height: 45%;"></div>
+                <div class="mini-chart-bar" style="height: 65%;"></div>
+                <div class="mini-chart-bar" style="height: 70%;"></div>
+                <div class="mini-chart-bar" style="height: 60%;"></div>
+                <div class="mini-chart-bar" style="height: 80%;"></div>
+                <div class="mini-chart-bar" style="height: 75%;"></div>
+                <div class="mini-chart-bar" style="height: 85%;"></div>
+                <div class="mini-chart-bar" style="height: 90%;"></div>
+                <div class="mini-chart-bar" style="height: 82%;"></div>
+                <div class="mini-chart-bar" style="height: 95%;"></div>
+              </div>
+              <div style="display: flex; justify-content: space-between; margin-top: var(--space-md); font-size: 0.75rem; color: var(--text-muted);">
+                <span>Apr</span><span>May</span><span>Jun</span><span>Jul</span><span>Aug</span><span>Sep</span><span>Oct</span><span>Nov</span><span>Dec</span><span>Jan</span><span>Feb</span><span>Mar</span>
+              </div>
+            </div>
+
+            <div class="chart-card card">
+              <div class="section-card-header">
+                <h3>Prize Distribution</h3>
+              </div>
+              <div style="display: flex; flex-direction: column; gap: var(--space-md); margin-top: var(--space-md);">
+                <div>
+                  <div style="display: flex; justify-content: space-between; margin-bottom: 4px; font-size: 0.85rem;">
+                    <span style="color: var(--text-secondary);">5-Match (40%)</span>
+                    <span style="font-weight: 700; color: var(--accent-400);">£4,960</span>
+                  </div>
+                  <div class="charity-progress-bar">
+                    <div class="charity-progress-fill" style="width: 40%; background: var(--gradient-accent);"></div>
+                  </div>
+                </div>
+                <div>
+                  <div style="display: flex; justify-content: space-between; margin-bottom: 4px; font-size: 0.85rem;">
+                    <span style="color: var(--text-secondary);">4-Match (35%)</span>
+                    <span style="font-weight: 700; color: var(--primary-400);">£4,340</span>
+                  </div>
+                  <div class="charity-progress-bar">
+                    <div class="charity-progress-fill" style="width: 35%;"></div>
+                  </div>
+                </div>
+                <div>
+                  <div style="display: flex; justify-content: space-between; margin-bottom: 4px; font-size: 0.85rem;">
+                    <span style="color: var(--text-secondary);">3-Match (25%)</span>
+                    <span style="font-weight: 700; color: var(--info);">£3,100</span>
+                  </div>
+                  <div class="charity-progress-bar">
+                    <div class="charity-progress-fill" style="width: 25%; background: linear-gradient(90deg, #3b82f6, #60a5fa);"></div>
+                  </div>
+                </div>
+              </div>
+              <div style="margin-top: var(--space-xl); padding-top: var(--space-lg); border-top: 1px solid var(--border-default);">
+                <div style="display: flex; justify-content: space-between; font-size: 0.9rem;">
+                  <span style="color: var(--text-secondary);">Current Jackpot</span>
+                  <span style="font-family: var(--font-display); font-weight: 800; font-size: 1.25rem; color: var(--accent-400);">£1,240</span>
+                </div>
+                <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: 4px;">Rollover from 2 months</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Recent Users Table -->
+          <div class="admin-table-card card">
+            <div class="admin-table-header">
+              <h3>Recent Users</h3>
+              <button class="btn btn-outline btn-sm">View All Users</button>
+            </div>
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>User</th>
+                  <th>Plan</th>
+                  <th>Status</th>
+                  <th>Scores</th>
+                  <th>Charity</th>
+                  <th>Joined</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <div class="table-user">
+                      <div class="table-avatar">JM</div>
+                      <div>
+                        <div class="table-user-name">James Mitchell</div>
+                        <div class="table-user-email">james@email.com</div>
+                      </div>
+                    </div>
+                  </td>
+                  <td>Yearly</td>
+                  <td><span class="badge badge-success">Active</span></td>
+                  <td>5/5</td>
+                  <td>🌍 Green Earth</td>
+                  <td>Jan 12, 2026</td>
+                  <td>
+                    <div class="table-actions">
+                      <button class="table-action-btn" title="View"><i class="fas fa-eye"></i></button>
+                      <button class="table-action-btn" title="Edit"><i class="fas fa-pen"></i></button>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="table-user">
+                      <div class="table-avatar" style="background: var(--gradient-accent);">SP</div>
+                      <div>
+                        <div class="table-user-name">Sarah Parker</div>
+                        <div class="table-user-email">sarah@email.com</div>
+                      </div>
+                    </div>
+                  </td>
+                  <td>Monthly</td>
+                  <td><span class="badge badge-success">Active</span></td>
+                  <td>3/5</td>
+                  <td>🏥 Health Heroes</td>
+                  <td>Dec 3, 2025</td>
+                  <td>
+                    <div class="table-actions">
+                      <button class="table-action-btn" title="View"><i class="fas fa-eye"></i></button>
+                      <button class="table-action-btn" title="Edit"><i class="fas fa-pen"></i></button>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="table-user">
+                      <div class="table-avatar" style="background: linear-gradient(135deg, #ec4899, #f472b6);">RK</div>
+                      <div>
+                        <div class="table-user-name">Robert Khan</div>
+                        <div class="table-user-email">robert@email.com</div>
+                      </div>
+                    </div>
+                  </td>
+                  <td>Yearly</td>
+                  <td><span class="badge badge-warning">Expiring</span></td>
+                  <td>5/5</td>
+                  <td>📚 Future Minds</td>
+                  <td>Nov 18, 2025</td>
+                  <td>
+                    <div class="table-actions">
+                      <button class="table-action-btn" title="View"><i class="fas fa-eye"></i></button>
+                      <button class="table-action-btn" title="Edit"><i class="fas fa-pen"></i></button>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Admin Users Page -->
+        <div class="dashboard-page" id="page-admin-users" style="display: none;">
+          <div class="admin-table-card card">
+            <div class="admin-table-header">
+              <h3>All Users (2,450)</h3>
+              <div class="admin-table-filters">
+                <button class="filter-chip active">All</button>
+                <button class="filter-chip">Active</button>
+                <button class="filter-chip">Expired</button>
+                <button class="filter-chip">Cancelled</button>
+              </div>
+            </div>
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>User</th>
+                  <th>Plan</th>
+                  <th>Status</th>
+                  <th>Scores</th>
+                  <th>Charity</th>
+                  <th>Total Donated</th>
+                  <th>Joined</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="admin-users-tbody">
+                <!-- Populated by JS -->
+              </tbody>
+            </table>
+            <div class="pagination">
+              <button class="pagination-btn">‹</button>
+              <button class="pagination-btn active">1</button>
+              <button class="pagination-btn">2</button>
+              <button class="pagination-btn">3</button>
+              <button class="pagination-btn">...</button>
+              <button class="pagination-btn">25</button>
+              <button class="pagination-btn">›</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Admin Draw Manager -->
+        <div class="dashboard-page" id="page-admin-draws" style="display: none;">
+          <div class="draw-manager card">
+            <h3 style="margin-bottom: var(--space-xl);">🎱 Draw Manager — March 2026</h3>
+
+            <div class="draw-config">
+              <div class="draw-config-card">
+                <div class="draw-config-value" style="color: var(--primary-400);">2,450</div>
+                <div class="draw-config-label">Eligible Players</div>
+              </div>
+              <div class="draw-config-card">
+                <div class="draw-config-value" style="color: var(--accent-400);">£12,400</div>
+                <div class="draw-config-label">Total Prize Pool</div>
+              </div>
+              <div class="draw-config-card">
+                <div class="draw-config-value" style="color: #ec4899;">£1,240</div>
+                <div class="draw-config-label">Jackpot (Rollover)</div>
+              </div>
+            </div>
+
+            <div style="padding: var(--space-xl); background: var(--bg-glass); border-radius: var(--radius-md); border: 1px solid var(--border-default); margin-bottom: var(--space-xl);">
+              <h4 style="margin-bottom: var(--space-md);">Prize Breakdown</h4>
+              <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-md);">
+                <div style="text-align: center;">
+                  <div style="font-size: 0.85rem; color: var(--text-muted);">5-Match (40%)</div>
+                  <div style="font-family: var(--font-display); font-weight: 800; font-size: 1.5rem; color: var(--accent-400);">£6,200</div>
+                </div>
+                <div style="text-align: center;">
+                  <div style="font-size: 0.85rem; color: var(--text-muted);">4-Match (35%)</div>
+                  <div style="font-family: var(--font-display); font-weight: 800; font-size: 1.5rem; color: var(--primary-400);">£4,340</div>
+                </div>
+                <div style="text-align: center;">
+                  <div style="font-size: 0.85rem; color: var(--text-muted);">3-Match (25%)</div>
+                  <div style="font-family: var(--font-display); font-weight: 800; font-size: 1.5rem; color: var(--info);">£3,100</div>
+                </div>
+              </div>
+            </div>
+
+            <button class="btn btn-accent btn-lg draw-run-btn" id="run-draw-btn">
+              <i class="fas fa-play"></i> Run Monthly Draw
+            </button>
+
+            <div id="draw-results" style="display: none; margin-top: var(--space-xl); padding: var(--space-xl); background: rgba(16, 185, 129, 0.05); border-radius: var(--radius-md); border: 1px solid var(--border-accent);">
+              <h4 style="margin-bottom: var(--space-md); text-align: center;">🎉 Draw Results</h4>
+              <div style="display: flex; justify-content: center; gap: var(--space-md); margin-bottom: var(--space-lg);">
+                <div class="score-ball matched" style="width: 60px; height: 60px; font-size: 1.3rem;" id="draw-ball-1">--</div>
+                <div class="score-ball matched" style="width: 60px; height: 60px; font-size: 1.3rem;" id="draw-ball-2">--</div>
+                <div class="score-ball matched" style="width: 60px; height: 60px; font-size: 1.3rem;" id="draw-ball-3">--</div>
+                <div class="score-ball matched" style="width: 60px; height: 60px; font-size: 1.3rem;" id="draw-ball-4">--</div>
+                <div class="score-ball matched" style="width: 60px; height: 60px; font-size: 1.3rem;" id="draw-ball-5">--</div>
+              </div>
+              <div id="draw-winners-summary" style="text-align: center;">
+                <!-- Populated by JS -->
+              </div>
+              <button class="btn btn-primary" id="publish-draw-btn" style="width: 100%; margin-top: var(--space-lg);">
+                <i class="fas fa-share"></i> Publish Results
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Admin Charities -->
+        <div class="dashboard-page" id="page-admin-charities" style="display: none;">
+          <div class="admin-table-card card">
+            <div class="admin-table-header">
+              <h3>Manage Charities (24)</h3>
+              <button class="btn btn-primary btn-sm" id="add-charity-btn">
+                <i class="fas fa-plus"></i> Add Charity
+              </button>
+            </div>
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>Charity</th>
+                  <th>Category</th>
+                  <th>Supporters</th>
+                  <th>Total Received</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><div class="table-user"><span style="font-size: 1.5rem;">🌍</span><div><div class="table-user-name">Green Earth Fund</div><div class="table-user-email">greenearth.org</div></div></div></td>
+                  <td>Environment</td>
+                  <td>380</td>
+                  <td class="amount">£18,240</td>
+                  <td><span class="badge badge-success">Active</span></td>
+                  <td><div class="table-actions"><button class="table-action-btn"><i class="fas fa-pen"></i></button><button class="table-action-btn reject"><i class="fas fa-trash"></i></button></div></td>
+                </tr>
+                <tr>
+                  <td><div class="table-user"><span style="font-size: 1.5rem;">🏥</span><div><div class="table-user-name">Health Heroes UK</div><div class="table-user-email">healthheroes.org.uk</div></div></div></td>
+                  <td>Healthcare</td>
+                  <td>430</td>
+                  <td class="amount">£22,150</td>
+                  <td><span class="badge badge-success">Active</span></td>
+                  <td><div class="table-actions"><button class="table-action-btn"><i class="fas fa-pen"></i></button><button class="table-action-btn reject"><i class="fas fa-trash"></i></button></div></td>
+                </tr>
+                <tr>
+                  <td><div class="table-user"><span style="font-size: 1.5rem;">📚</span><div><div class="table-user-name">Future Minds</div><div class="table-user-email">futureminds.org</div></div></div></td>
+                  <td>Education</td>
+                  <td>290</td>
+                  <td class="amount">£15,680</td>
+                  <td><span class="badge badge-success">Active</span></td>
+                  <td><div class="table-actions"><button class="table-action-btn"><i class="fas fa-pen"></i></button><button class="table-action-btn reject"><i class="fas fa-trash"></i></button></div></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Admin Winners Verification -->
+        <div class="dashboard-page" id="page-admin-winners" style="display: none;">
+          <div class="card" style="padding: var(--space-xl);">
+            <div class="admin-table-header">
+              <h3>Winner Verification Queue (3)</h3>
+              <div class="admin-table-filters">
+                <button class="filter-chip active">Pending</button>
+                <button class="filter-chip">Approved</button>
+                <button class="filter-chip">Rejected</button>
+                <button class="filter-chip">All</button>
+              </div>
+            </div>
+
+            <div class="verification-card card-glass">
+              <div class="verification-proof">📸</div>
+              <div class="verification-info">
+                <h5>James Mitchell — 4-Match Winner</h5>
+                <div class="verification-meta">
+                  <span><i class="fas fa-calendar"></i> February 2026 Draw</span>
+                  <span><i class="fas fa-sterling-sign"></i> £420 Prize</span>
+                  <span><i class="fas fa-clock"></i> Submitted 2 days ago</span>
+                </div>
+                <p style="font-size: 0.85rem; color: var(--text-secondary); margin: 8px 0;">Proof of Stableford scores from Royal County Golf Club. Scorecard photo attached.</p>
+                <div class="verification-actions">
+                  <button class="btn btn-primary btn-sm" id="approve-winner-1">
+                    <i class="fas fa-check"></i> Approve
+                  </button>
+                  <button class="btn btn-outline btn-sm" style="border-color: var(--error); color: var(--error);" id="reject-winner-1">
+                    <i class="fas fa-times"></i> Reject
+                  </button>
+                  <button class="btn btn-ghost btn-sm" id="view-proof-1">
+                    <i class="fas fa-eye"></i> View Proof
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="verification-card card-glass">
+              <div class="verification-proof">📸</div>
+              <div class="verification-info">
+                <h5>Sarah Parker — 3-Match Winner</h5>
+                <div class="verification-meta">
+                  <span><i class="fas fa-calendar"></i> February 2026 Draw</span>
+                  <span><i class="fas fa-sterling-sign"></i> £180 Prize</span>
+                  <span><i class="fas fa-clock"></i> Submitted 4 days ago</span>
+                </div>
+                <p style="font-size: 0.85rem; color: var(--text-secondary); margin: 8px 0;">Score verification from local club with official stamp.</p>
+                <div class="verification-actions">
+                  <button class="btn btn-primary btn-sm">
+                    <i class="fas fa-check"></i> Approve
+                  </button>
+                  <button class="btn btn-outline btn-sm" style="border-color: var(--error); color: var(--error);">
+                    <i class="fas fa-times"></i> Reject
+                  </button>
+                  <button class="btn btn-ghost btn-sm">
+                    <i class="fas fa-eye"></i> View Proof
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="verification-card card-glass">
+              <div class="verification-proof">📸</div>
+              <div class="verification-info">
+                <h5>Robert Khan — 3-Match Winner</h5>
+                <div class="verification-meta">
+                  <span><i class="fas fa-calendar"></i> February 2026 Draw</span>
+                  <span><i class="fas fa-sterling-sign"></i> £180 Prize</span>
+                  <span><i class="fas fa-clock"></i> Submitted 5 days ago</span>
+                </div>
+                <p style="font-size: 0.85rem; color: var(--text-secondary); margin: 8px 0;">Digital scorecard from Birdie Pro app with GPS verification.</p>
+                <div class="verification-actions">
+                  <button class="btn btn-primary btn-sm">
+                    <i class="fas fa-check"></i> Approve
+                  </button>
+                  <button class="btn btn-outline btn-sm" style="border-color: var(--error); color: var(--error);">
+                    <i class="fas fa-times"></i> Reject
+                  </button>
+                  <button class="btn btn-ghost btn-sm">
+                    <i class="fas fa-eye"></i> View Proof
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Admin Payments -->
+        <div class="dashboard-page" id="page-admin-payments" style="display: none;">
+          <div class="admin-table-card card">
+            <div class="admin-table-header">
+              <h3>Payment Tracking</h3>
+              <div class="admin-table-filters">
+                <button class="filter-chip active">All</button>
+                <button class="filter-chip">Pending</button>
+                <button class="filter-chip">Paid</button>
+              </div>
+            </div>
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>Winner</th>
+                  <th>Draw</th>
+                  <th>Match</th>
+                  <th>Amount</th>
+                  <th>Verification</th>
+                  <th>Payment</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><div class="table-user"><div class="table-avatar">JM</div><div><div class="table-user-name">James Mitchell</div></div></div></td>
+                  <td>Feb 2026</td>
+                  <td><span class="badge badge-info">4-Match</span></td>
+                  <td class="amount">£420</td>
+                  <td><span class="badge badge-success">Approved</span></td>
+                  <td><span class="badge badge-warning">Pending</span></td>
+                  <td><button class="btn btn-primary btn-sm"><i class="fas fa-money-bill-wave"></i> Pay</button></td>
+                </tr>
+                <tr>
+                  <td><div class="table-user"><div class="table-avatar" style="background: var(--gradient-accent);">SP</div><div><div class="table-user-name">Sarah Parker</div></div></div></td>
+                  <td>Feb 2026</td>
+                  <td><span class="badge badge-success">3-Match</span></td>
+                  <td class="amount">£180</td>
+                  <td><span class="badge badge-success">Approved</span></td>
+                  <td><span class="badge badge-success">Paid</span></td>
+                  <td><button class="btn btn-ghost btn-sm"><i class="fas fa-receipt"></i> Receipt</button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+    </main>
+  </div>
+
+  <div class="sidebar-overlay" id="sidebar-overlay" style="display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 19;"></div>
+  <div class="toast-container" id="toast-container"></div>
+
+  <script src="../js/api.js"></script>
+  <script src="../js/app.js"></script>
+  <script src="../js/admin.js"></script>
+</body>
+</html>

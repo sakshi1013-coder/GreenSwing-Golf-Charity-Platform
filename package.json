@@ -1,0 +1,30 @@
+{
+  "name": "greenswing",
+  "version": "1.0.0",
+  "description": "GreenSwing - Golf Charity Subscription Platform",
+  "main": "server/index.js",
+  "scripts": {
+    "dev": "npx -y concurrently \"npx -y nodemon server/index.js\" \"cd client && npx -y live-server --port=3000 --no-browser\"",
+    "dev:client": "cd client && npx -y live-server --port=3000 --no-browser",
+    "dev:server": "npx -y nodemon server/index.js",
+    "server": "node server/index.js",
+    "start": "node server/index.js"
+  },
+  "keywords": [
+    "golf",
+    "charity",
+    "subscription",
+    "stableford"
+  ],
+  "author": "GreenSwing Team",
+  "license": "MIT",
+  "dependencies": {
+    "@supabase/supabase-js": "^2.78.0",
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.2",
+    "stripe": "^14.11.0"
+  }
+}

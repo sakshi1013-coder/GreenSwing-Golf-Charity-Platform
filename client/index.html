@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="GreenSwing - Play golf, win prizes, change lives. A subscription platform combining golf skills with charitable giving.">
+  <meta name="keywords" content="golf, charity, subscription, stableford, prize draw, donations">
+  <title>GreenSwing — Play. Win. Give Back.</title>
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/landing.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="nav" id="main-nav">
+    <div class="container nav-inner">
+      <a href="index.html" class="nav-logo" id="nav-logo">
+        <span class="logo-icon">⛳</span>
+        GreenSwing
+      </a>
+      
+      <div class="nav-links" id="nav-links">
+        <a href="#how-it-works" class="nav-link">How It Works</a>
+        <a href="#features" class="nav-link">Features</a>
+        <a href="#pricing" class="nav-link">Pricing</a>
+        <a href="#charities" class="nav-link">Charities</a>
+        <a href="#testimonials" class="nav-link">Stories</a>
+      </div>
+
+      <div class="nav-actions">
+        <a href="pages/login.html" class="btn btn-ghost" id="nav-login">Log In</a>
+        <a href="pages/register.html" class="btn btn-primary" id="nav-signup">Get Started</a>
+        <button class="nav-mobile-btn" id="mobile-menu-toggle" aria-label="Open menu">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile Navigation -->
+  <div class="mobile-nav" id="mobile-nav">
+    <button class="mobile-nav-close" id="mobile-nav-close" aria-label="Close menu">
+      <i class="fas fa-times"></i>
+    </button>
+    <a href="#how-it-works" class="nav-link">How It Works</a>
+    <a href="#features" class="nav-link">Features</a>
+    <a href="#pricing" class="nav-link">Pricing</a>
+    <a href="#charities" class="nav-link">Charities</a>
+    <a href="#testimonials" class="nav-link">Stories</a>
+    <a href="pages/login.html" class="btn btn-outline btn-lg">Log In</a>
+    <a href="pages/register.html" class="btn btn-primary btn-lg">Get Started</a>
+  </div>
+
+  <!-- Hero Section -->
+  <section class="hero" id="hero">
+    <div class="hero-bg">
+      <div class="hero-particles" id="hero-particles"></div>
+    </div>
+    <div class="container hero-content">
+      <div class="hero-text">
+        <div class="hero-badge">
+          <span class="pulse-dot"></span>
+          Launching Season 2026
+        </div>
+        <h1 class="hero-title">
+          Play Golf.<br>
+          <span class="highlight">Win Big.</span><br>
+          Give Back.
+        </h1>
+        <p class="hero-subtitle">
+          Your monthly golf scores could win you incredible prizes — while making a real impact for charities you care about. It's golf meets generosity.
+        </p>
+        <div class="hero-actions">
+          <a href="pages/register.html" class="btn btn-primary btn-lg" id="hero-cta-primary">
+            <i class="fas fa-rocket"></i>
+            Start Your Swing
+          </a>
+          <a href="#how-it-works" class="btn btn-outline btn-lg" id="hero-cta-secondary">
+            <i class="fas fa-play-circle"></i>
+            See How It Works
+          </a>
+        </div>
+        <div class="hero-stats">
+          <div class="hero-stat">
+            <span class="hero-stat-value" data-count="2450">0</span>
+            <span class="hero-stat-label">Active Members</span>
+          </div>
+          <div class="hero-stat">
+            <span class="hero-stat-value" data-count="128" data-prefix="£" data-suffix="K">£0</span>
+            <span class="hero-stat-label">Donated to Charity</span>
+          </div>
+          <div class="hero-stat">
+            <span class="hero-stat-value" data-count="45" data-prefix="£" data-suffix="K">£0</span>
+            <span class="hero-stat-label">Prizes Awarded</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="hero-card-stack">
+          <div class="hero-card hero-card-bg-2 card">
+            <div style="height: 120px;"></div>
+          </div>
+          <div class="hero-card hero-card-bg-1 card">
+            <div style="height: 120px;"></div>
+          </div>
+          <div class="hero-card hero-card-main card card-glow">
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px;">
+              <span style="font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.1em; font-weight: 600;">March Draw</span>
+              <span class="badge badge-success">Live</span>
+            </div>
+            <h4 style="margin-bottom: 4px;">Your Scores</h4>
+            <p style="font-size: 0.85rem; margin-bottom: 16px;">3 of 5 matched! 🎉</p>
+            <div class="hero-mini-score">
+              <div class="score-ball matched">32</div>
+              <div class="score-ball matched">18</div>
+              <div class="score-ball">41</div>
+              <div class="score-ball matched">27</div>
+              <div class="score-ball">9</div>
+            </div>
+            <div style="margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--border-default); display: flex; align-items: center; justify-content: space-between;">
+              <span style="font-size: 0.85rem; color: var(--text-muted);">3-Match Prize</span>
+              <span style="font-family: var(--font-display); font-weight: 800; font-size: 1.25rem; color: var(--primary-400);">£240</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works -->
+  <section class="section" id="how-it-works">
+    <div class="container">
+      <div class="section-header">
+        <p class="section-label">Simple & Rewarding</p>
+        <h2 class="section-title">How <span class="text-gradient">GreenSwing</span> Works</h2>
+        <p class="section-desc">Four simple steps to transform your golf rounds into prizes and charitable impact.</p>
+      </div>
+
+      <div class="how-it-works-grid stagger-children">
+        <div class="step-card card-glass">
+          <div class="step-number green">1</div>
+          <h4>Subscribe</h4>
+          <p>Choose monthly or yearly. Start from just £9.99/month with a portion going directly to charity.</p>
+        </div>
+        <div class="step-card card-glass">
+          <div class="step-number gold">2</div>
+          <h4>Enter Scores</h4>
+          <p>Log your last 5 Stableford scores (1-45). They're your entry numbers for the monthly draw.</p>
+        </div>
+        <div class="step-card card-glass">
+          <div class="step-number blue">3</div>
+          <h4>Monthly Draw</h4>
+          <p>Each month, 5 numbers are drawn. Match 3, 4, or all 5 to win from the prize pool.</p>
+        </div>
+        <div class="step-card card-glass">
+          <div class="step-number pink">4</div>
+          <h4>Win & Give</h4>
+          <p>Winners collect prizes while your subscription continues supporting amazing charities.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Impact Stats -->
+  <section class="impact-section" id="impact">
+    <div class="container">
+      <div class="impact-grid stagger-children">
+        <div class="impact-item">
+          <div class="impact-value green" data-count="128000" data-prefix="£">£0</div>
+          <div class="impact-label">Donated to Charities</div>
+        </div>
+        <div class="impact-item">
+          <div class="impact-value gold" data-count="2450">0</div>
+          <div class="impact-label">Active Subscribers</div>
+        </div>
+        <div class="impact-item">
+          <div class="impact-value blue" data-count="342">0</div>
+          <div class="impact-label">Prize Winners</div>
+        </div>
+        <div class="impact-item">
+          <div class="impact-value pink" data-count="24">0</div>
+          <div class="impact-label">Partner Charities</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section class="section" id="features">
+    <div class="container">
+      <div class="section-header">
+        <p class="section-label">Platform Features</p>
+        <h2 class="section-title">Everything You Need to <span class="text-gradient">Play & Give</span></h2>
+        <p class="section-desc">A complete platform designed for golfers who want to make their rounds count for more.</p>
+      </div>
+
+      <div class="features-grid stagger-children">
+        <div class="feature-card card card-glow">
+          <div class="feature-icon green">
+            <i class="fas fa-chart-line"></i>
+          </div>
+          <h4>Smart Score Tracking</h4>
+          <p>Enter your Stableford scores with real-time validation. Your latest 5 scores become your draw entries automatically.</p>
+        </div>
+
+        <div class="feature-card card card-glow">
+          <div class="feature-icon gold">
+            <i class="fas fa-trophy"></i>
+          </div>
+          <h4>Monthly Prize Draws</h4>
+          <p>Match 3, 4, or 5 numbers to win. The jackpot rolls over if unclaimed — growing bigger every month.</p>
+        </div>
+
+        <div class="feature-card card card-glow">
+          <div class="feature-icon blue">
+            <i class="fas fa-heart"></i>
+          </div>
+          <h4>Charity Impact</h4>
+          <p>Choose your charity at signup. Minimum 10% of your subscription goes directly to causes you believe in.</p>
+        </div>
+
+        <div class="feature-card card card-glow">
+          <div class="feature-icon green">
+            <i class="fas fa-shield-halved"></i>
+          </div>
+          <h4>Verified Winners</h4>
+          <p>Transparent verification process with proof uploads and admin approval. Every penny accounted for.</p>
+        </div>
+
+        <div class="feature-card card card-glow">
+          <div class="feature-icon gold">
+            <i class="fas fa-bolt"></i>
+          </div>
+          <h4>Instant Dashboard</h4>
+          <p>Track scores, subscriptions, draw results, and charity impact — all from one beautiful dashboard.</p>
+        </div>
+
+        <div class="feature-card card card-glow">
+          <div class="feature-icon blue">
+            <i class="fas fa-mobile-screen-button"></i>
+          </div>
+          <h4>Mobile First</h4>
+          <p>Enter scores straight from the course. Optimized for any device, anywhere, anytime.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing -->
+  <section class="section" id="pricing">
+    <div class="container">
+      <div class="section-header">
+        <p class="section-label">Simple Pricing</p>
+        <h2 class="section-title">Pick Your <span class="text-gradient">Plan</span></h2>
+        <p class="section-desc">Every subscription helps fund great causes. Choose what works for you.</p>
+      </div>
+
+      <div class="pricing-grid stagger-children">
+        <div class="pricing-card card">
+          <div class="pricing-plan">Monthly</div>
+          <div class="pricing-price">
+            <span class="currency">£</span>9.99
+            <span class="period">/mo</span>
+          </div>
+          <div class="pricing-savings">&nbsp;</div>
+          <div class="pricing-features">
+            <div class="pricing-feature">
+              <span class="check"><i class="fas fa-check-circle"></i></span>
+              Monthly draw entry
+            </div>
+            <div class="pricing-feature">
+              <span class="check"><i class="fas fa-check-circle"></i></span>
+              Track 5 Stableford scores
+            </div>
+            <div class="pricing-feature">
+              <span class="check"><i class="fas fa-check-circle"></i></span>
+              Choose your charity
+            </div>
+            <div class="pricing-feature">
+              <span class="check"><i class="fas fa-check-circle"></i></span>
+              Full dashboard access
+            </div>
+            <div class="pricing-feature">
+              <span class="check"><i class="fas fa-check-circle"></i></span>
+              Cancel anytime
+            </div>
+          </div>
+          <a href="pages/register.html" class="btn btn-outline" id="pricing-monthly-cta" style="width: 100%;">Choose Monthly</a>
+        </div>
+
+        <div class="pricing-card card featured">
+          <span class="pricing-popular badge badge-primary">Best Value</span>
+          <div class="pricing-plan">Yearly</div>
+          <div class="pricing-price">
+            <span class="currency">£</span>89.99
+            <span class="period">/yr</span>
+          </div>
+          <div class="pricing-savings">Save £29.89 vs monthly 🎉</div>
+          <div class="pricing-features">
+            <div class="pricing-feature">
+              <span class="check"><i class="fas fa-check-circle"></i></span>
+              Everything in Monthly
+            </div>
+            <div class="pricing-feature">
+              <span class="check"><i class="fas fa-check-circle"></i></span>
+              <strong>2 bonus draw entries</strong>
+            </div>
+            <div class="pricing-feature">
+              <span class="check"><i class="fas fa-check-circle"></i></span>
+              <strong>Priority charity matching</strong>
+            </div>
+            <div class="pricing-feature">
+              <span class="check"><i class="fas fa-check-circle"></i></span>
+              Early draw notifications
+            </div>
+            <div class="pricing-feature">
+              <span class="check"><i class="fas fa-check-circle"></i></span>
+              Exclusive member badge
+            </div>
+          </div>
+          <a href="pages/register.html" class="btn btn-primary" id="pricing-yearly-cta" style="width: 100%;">Choose Yearly</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Charity Showcase -->
+  <section class="section charity-showcase" id="charities">
+    <div class="container">
+      <div class="section-header">
+        <p class="section-label">Making a Difference</p>
+        <h2 class="section-title">Charities We <span class="text-gradient">Support</span></h2>
+        <p class="section-desc">Your subscription directly funds the causes you care about most.</p>
+      </div>
+
+      <div class="charity-grid stagger-children">
+        <div class="charity-card card-glass">
+          <div class="charity-logo">🌍</div>
+          <h5>Green Earth Fund</h5>
+          <p>Environmental conservation & sustainability</p>
+          <div class="charity-impact">
+            <div class="charity-impact-value">£18,240</div>
+            <div class="charity-impact-label">Total Raised</div>
+          </div>
+        </div>
+
+        <div class="charity-card card-glass">
+          <div class="charity-logo">🏥</div>
+          <h5>Health Heroes UK</h5>
+          <p>NHS support & medical research</p>
+          <div class="charity-impact">
+            <div class="charity-impact-value">£22,150</div>
+            <div class="charity-impact-label">Total Raised</div>
+          </div>
+        </div>
+
+        <div class="charity-card card-glass">
+          <div class="charity-logo">📚</div>
+          <h5>Future Minds</h5>
+          <p>Education for underprivileged children</p>
+          <div class="charity-impact">
+            <div class="charity-impact-value">£15,680</div>
+            <div class="charity-impact-label">Total Raised</div>
+          </div>
+        </div>
+
+        <div class="charity-card card-glass">
+          <div class="charity-logo">🐾</div>
+          <h5>Paws & Claws</h5>
+          <p>Animal welfare & rescue shelters</p>
+          <div class="charity-impact">
+            <div class="charity-impact-value">£12,400</div>
+            <div class="charity-impact-label">Total Raised</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="section" id="testimonials">
+    <div class="container">
+      <div class="section-header">
+        <p class="section-label">Member Stories</p>
+        <h2 class="section-title">What Our <span class="text-gradient">Members</span> Say</h2>
+        <p class="section-desc">Real stories from golfers making a difference on and off the course.</p>
+      </div>
+
+      <div class="testimonials-grid stagger-children">
+        <div class="testimonial-card card">
+          <div class="testimonial-stars">★★★★★</div>
+          <p class="testimonial-text">"I won the 4-match prize in my second month! But honestly, knowing my subscription helps Health Heroes UK means more than any prize."</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">JM</div>
+            <div>
+              <div class="testimonial-name">James Mitchell</div>
+              <div class="testimonial-role">Member since Jan 2026</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card card">
+          <div class="testimonial-stars">★★★★★</div>
+          <p class="testimonial-text">"The platform makes tracking my Stableford scores so easy. The monthly draw adds genuine excitement to my game. Brilliant concept!"</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">SP</div>
+            <div>
+              <div class="testimonial-name">Sarah Parker</div>
+              <div class="testimonial-role">Member since Dec 2025</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card card">
+          <div class="testimonial-stars">★★★★★</div>
+          <p class="testimonial-text">"Our golf club has 30 members on GreenSwing now. Together we've raised over £3,000 for local charities. It's become part of our club culture."</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">RK</div>
+            <div>
+              <div class="testimonial-name">Robert Khan</div>
+              <div class="testimonial-role">Golf Club Captain</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="cta-section" id="cta">
+    <div class="container">
+      <div class="cta-content">
+        <h2 class="cta-title">Ready to Make Your <span class="text-gradient">Rounds Count</span>?</h2>
+        <p class="cta-desc">Join thousands of golfers who play with purpose. Subscribe, compete, and give back — it starts with one swing.</p>
+        <div class="cta-actions">
+          <a href="pages/register.html" class="btn btn-primary btn-lg" id="cta-primary">
+            <i class="fas fa-rocket"></i>
+            Start Your Free Trial
+          </a>
+          <a href="#how-it-works" class="btn btn-outline btn-lg" id="cta-secondary">
+            Learn More
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer" id="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="nav-logo">
+            <span class="logo-icon">⛳</span>
+            GreenSwing
+          </a>
+          <p>Transforming golf rounds into positive impact. Play with purpose, win with pride.</p>
+        </div>
+
+        <div>
+          <h6 class="footer-heading">Platform</h6>
+          <div class="footer-links">
+            <a href="#how-it-works" class="footer-link">How It Works</a>
+            <a href="#features" class="footer-link">Features</a>
+            <a href="#pricing" class="footer-link">Pricing</a>
+            <a href="#charities" class="footer-link">Charities</a>
+          </div>
+        </div>
+
+        <div>
+          <h6 class="footer-heading">Company</h6>
+          <div class="footer-links">
+            <a href="#" class="footer-link">About Us</a>
+            <a href="#" class="footer-link">Contact</a>
+            <a href="#" class="footer-link">Careers</a>
+            <a href="#" class="footer-link">Blog</a>
+          </div>
+        </div>
+
+        <div>
+          <h6 class="footer-heading">Legal</h6>
+          <div class="footer-links">
+            <a href="#" class="footer-link">Privacy Policy</a>
+            <a href="#" class="footer-link">Terms of Service</a>
+            <a href="#" class="footer-link">Cookie Policy</a>
+            <a href="#" class="footer-link">Gambling License</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2026 GreenSwing. All rights reserved.</p>
+        <div class="footer-socials">
+          <a href="#" class="footer-social" aria-label="Twitter"><i class="fab fa-x-twitter"></i></a>
+          <a href="#" class="footer-social" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="#" class="footer-social" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="footer-social" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Toast Container -->
+  <div class="toast-container" id="toast-container"></div>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
