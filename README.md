@@ -46,4 +46,4 @@ supabase/
 
 ## 🌐 Live Demo
 
-👉 
+👉 https://greenswing-golf-charity-platform.vercel.app/
