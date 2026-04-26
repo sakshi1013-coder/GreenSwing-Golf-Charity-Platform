@@ -7,7 +7,12 @@
   <title>Dashboard — GreenSwing</title>
   <link rel="stylesheet" href="../css/global.css">
   <link rel="stylesheet" href="../css/dashboard.css">
+  <link rel="stylesheet" href="../css/animations.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <!-- Auth + Loader must load first to prevent flash and guard routes -->
+  <script src="../js/loader.js"></script>
+  <script src="../js/gsAuth.js"></script>
+  <script src="../js/animation.js"></script>
 </head>
 <body>
 
@@ -16,7 +21,7 @@
     <!-- Sidebar -->
     <aside class="sidebar" id="sidebar">
       <div class="sidebar-header">
-        <a href="../index.html" class="sidebar-logo" id="sidebar-logo">
+        <a href="dashboard.html" class="sidebar-logo" id="sidebar-logo">
           <span class="logo-icon">⛳</span>
           GreenSwing
         </a>
@@ -35,7 +40,7 @@
         <a href="#" class="sidebar-link" data-page="draws" id="nav-draws">
           <span class="icon"><i class="fas fa-ticket"></i></span>
           Draw Center
-          <span class="badge-count">1</span>
+          <span class="badge-count" id="draw-badge" style="display: none;">1</span>
         </a>
         <a href="#" class="sidebar-link" data-page="charities" id="nav-charities">
           <span class="icon"><i class="fas fa-heart"></i></span>
@@ -58,14 +63,17 @@
       </nav>
 
       <div class="sidebar-footer">
-        <div class="sidebar-user" id="sidebar-user">
+        <div class="sidebar-user" id="sidebar-user" title="Click to sign out" style="cursor:pointer;">
           <div class="sidebar-user-avatar" id="user-avatar">JS</div>
           <div class="sidebar-user-info">
             <div class="sidebar-user-name" id="user-name">John Smith</div>
             <div class="sidebar-user-email" id="user-email">john@example.com</div>
           </div>
-          <i class="fas fa-chevron-right" style="color: var(--text-muted); font-size: 0.7rem;"></i>
+          <i class="fas fa-sign-out-alt" style="color: var(--text-muted); font-size: 0.85rem;" title="Sign out"></i>
         </div>
+        <button class="btn btn-ghost btn-sm" id="logout-btn" style="width:100%;margin-top:8px;color:var(--error);font-size:0.8rem;">
+          <i class="fas fa-power-off"></i> Sign Out
+        </button>
       </div>
     </aside>
 
@@ -98,7 +106,7 @@
         <div class="dashboard-page active" id="page-overview">
           <!-- Welcome Banner -->
           <div class="welcome-banner animate-fade-up">
-            <h2>Good evening, <span class="text-gradient" id="welcome-name">John</span> 👋</h2>
+            <h2>Good evening, <span class="text-gradient" id="welcome-name">John</span> <i class="fas fa-hand-paper" style="color: #fbbf24;"></i></h2>
             <p>You have an active subscription. The next draw is in <strong id="days-to-draw">5 days</strong>. Your 5 scores are ready!</p>
             <div class="welcome-actions">
               <a href="#" class="btn btn-primary btn-sm" id="quick-add-score">
@@ -278,15 +286,15 @@
 
                 <div class="draw-prize-preview">
                   <div class="prize-preview-item">
-                    <span class="prize-preview-label">🏆 5-Match (Jackpot)</span>
+                    <span class="prize-preview-label"><i class="fas fa-trophy" style="color: #fbbf24; margin-right: 4px;"></i>5-Match (Jackpot)</span>
                     <span class="prize-preview-value gold" id="prize-5match">£1,240</span>
                   </div>
                   <div class="prize-preview-item">
-                    <span class="prize-preview-label">🥈 4-Match</span>
+                    <span class="prize-preview-label"><i class="fas fa-medal" style="color: silver; margin-right: 4px;"></i>4-Match</span>
                     <span class="prize-preview-value green" id="prize-4match">£420</span>
                   </div>
                   <div class="prize-preview-item">
-                    <span class="prize-preview-label">🥉 3-Match</span>
+                    <span class="prize-preview-label"><i class="fas fa-medal" style="color: #cd7f32; margin-right: 4px;"></i>3-Match</span>
                     <span class="prize-preview-value blue" id="prize-3match">£180</span>
                   </div>
                 </div>
@@ -300,7 +308,7 @@
                 </div>
 
                 <div class="charity-selected">
-                  <div class="charity-selected-logo">🏥</div>
+                  <div class="charity-selected-logo"><i class="fas fa-hospital"></i></div>
                   <div class="charity-selected-info">
                     <h5>Health Heroes UK</h5>
                     <p>NHS support & medical research</p>
@@ -376,18 +384,18 @@
             </div>
 
             <div style="margin-top: var(--space-xl); padding: var(--space-lg); background: var(--bg-glass); border-radius: var(--radius-md); border: 1px solid var(--border-default);">
-              <h4 style="margin-bottom: var(--space-sm);">📊 Score Statistics</h4>
+              <h4 style="margin-bottom: var(--space-sm);"><i class="fas fa-chart-bar" style="margin-right: 8px;"></i>Score Statistics</h4>
               <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-md); text-align: center;">
                 <div>
-                  <div style="font-size: 1.5rem; font-weight: 800; font-family: var(--font-display); color: var(--primary-400);">28</div>
+                  <div id="stats-page-avg" style="font-size: 1.5rem; font-weight: 800; font-family: var(--font-display); color: var(--primary-400);">28</div>
                   <div style="font-size: 0.8rem; color: var(--text-muted);">Average</div>
                 </div>
                 <div>
-                  <div style="font-size: 1.5rem; font-weight: 800; font-family: var(--font-display); color: var(--accent-400);">41</div>
+                  <div id="stats-page-highest" style="font-size: 1.5rem; font-weight: 800; font-family: var(--font-display); color: var(--accent-400);">41</div>
                   <div style="font-size: 0.8rem; color: var(--text-muted);">Highest</div>
                 </div>
                 <div>
-                  <div style="font-size: 1.5rem; font-weight: 800; font-family: var(--font-display); color: var(--info);">9</div>
+                  <div id="stats-page-lowest" style="font-size: 1.5rem; font-weight: 800; font-family: var(--font-display); color: var(--info);">9</div>
                   <div style="font-size: 0.8rem; color: var(--text-muted);">Lowest</div>
                 </div>
               </div>
@@ -398,38 +406,34 @@
         <!-- Draws Page -->
         <div class="dashboard-page" id="page-draws" style="display: none;">
           <div class="card" style="padding: var(--space-xl); margin-bottom: var(--space-xl);">
-            <h3 style="margin-bottom: var(--space-lg);">🎱 Current Draw — March 2026</h3>
+            <h3 style="margin-bottom: var(--space-lg);"><i class="fas fa-ticket-alt" style="margin-right: 8px;"></i>Current Draw — March 2026</h3>
             <div style="text-align: center; padding: var(--space-xl); background: var(--bg-glass); border-radius: var(--radius-md); margin-bottom: var(--space-lg);">
               <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: var(--space-md);">YOUR ENTRY NUMBERS</p>
-              <div style="display: flex; justify-content: center; gap: var(--space-md);">
-                <div class="score-ball" style="width: 56px; height: 56px; font-size: 1.25rem;">32</div>
-                <div class="score-ball" style="width: 56px; height: 56px; font-size: 1.25rem;">27</div>
-                <div class="score-ball" style="width: 56px; height: 56px; font-size: 1.25rem;">18</div>
-                <div class="score-ball" style="width: 56px; height: 56px; font-size: 1.25rem;">41</div>
-                <div class="score-ball" style="width: 56px; height: 56px; font-size: 1.25rem;">9</div>
+              <div id="draw-center-balls" style="display: flex; justify-content: center; gap: var(--space-md); min-height: 56px;">
+                <!-- Dynamically populated from recent scores -->
               </div>
               <p style="margin-top: var(--space-md); font-size: 0.9rem;">Draw date: <strong>April 1, 2026</strong></p>
             </div>
             <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-md);">
               <div style="text-align: center; padding: var(--space-lg); background: rgba(245, 158, 11, 0.1); border-radius: var(--radius-md); border: 1px solid rgba(245, 158, 11, 0.2);">
-                <div style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 4px;">🏆 5-Match Jackpot</div>
+                <div style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 4px;"><i class="fas fa-trophy" style="color: #fbbf24; margin-right: 4px;"></i>5-Match Jackpot</div>
                 <div style="font-family: var(--font-display); font-size: 1.5rem; font-weight: 800; color: var(--accent-400);">£1,240</div>
                 <div style="font-size: 0.75rem; color: var(--text-muted);">40% of pool + rollover</div>
               </div>
               <div style="text-align: center; padding: var(--space-lg); background: rgba(16, 185, 129, 0.1); border-radius: var(--radius-md); border: 1px solid rgba(16, 185, 129, 0.2);">
-                <div style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 4px;">🥈 4-Match</div>
+                <div style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 4px;"><i class="fas fa-medal" style="color: silver; margin-right: 4px;"></i>4-Match</div>
                 <div style="font-family: var(--font-display); font-size: 1.5rem; font-weight: 800; color: var(--primary-400);">£420</div>
                 <div style="font-size: 0.75rem; color: var(--text-muted);">35% of pool</div>
               </div>
               <div style="text-align: center; padding: var(--space-lg); background: rgba(59, 130, 246, 0.1); border-radius: var(--radius-md); border: 1px solid rgba(59, 130, 246, 0.2);">
-                <div style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 4px;">🥉 3-Match</div>
+                <div style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 4px;"><i class="fas fa-medal" style="color: #cd7f32; margin-right: 4px;"></i>3-Match</div>
                 <div style="font-family: var(--font-display); font-size: 1.5rem; font-weight: 800; color: var(--info);">£180</div>
                 <div style="font-size: 0.75rem; color: var(--text-muted);">25% of pool</div>
               </div>
             </div>
           </div>
           <div class="card" style="padding: var(--space-xl);">
-            <h3 style="margin-bottom: var(--space-lg);">📜 Past Draws</h3>
+            <h3 style="margin-bottom: var(--space-lg);"><i class="fas fa-scroll" style="margin-right: 8px;"></i>Past Draws</h3>
             <table class="winnings-table">
               <thead>
                 <tr>
@@ -451,7 +455,7 @@
                       <div class="score-ball" style="width: 28px; height: 28px; font-size: 0.7rem;">38</div>
                     </div>
                   </td>
-                  <td><span class="badge badge-success">3-Match! 🎉</span></td>
+                  <td><span class="badge badge-success">3-Match! <i class="fas fa-gift" style="margin-left: 4px;"></i></span></td>
                   <td class="amount">£240</td>
                 </tr>
                 <tr>
@@ -476,9 +480,9 @@
         <!-- Other pages are loaded dynamically -->
         <div class="dashboard-page" id="page-charities" style="display: none;">
           <div class="card" style="padding: var(--space-xl);">
-            <h3 style="margin-bottom: var(--space-lg);">💛 Your Charity</h3>
+            <h3 style="margin-bottom: var(--space-lg);"><i class="fas fa-heart" style="color: #f59e0b; margin-right: 8px;"></i>Your Charity</h3>
             <div class="charity-selected" style="padding: var(--space-lg); background: var(--bg-glass); border-radius: var(--radius-md); border: 1px solid var(--border-default);">
-              <div class="charity-selected-logo" style="width: 72px; height: 72px; font-size: 2rem;">🏥</div>
+              <div class="charity-selected-logo" style="width: 72px; height: 72px; font-size: 2rem; display: flex; align-items: center; justify-content: center;"><i class="fas fa-hospital"></i></div>
               <div class="charity-selected-info">
                 <h4 style="font-size: 1.1rem;">Health Heroes UK</h4>
                 <p style="margin-top: 4px;">Supporting NHS workers, funding medical research, and providing mental health resources. Your contributions help save lives every day.</p>
@@ -520,7 +524,7 @@
 
         <div class="dashboard-page" id="page-subscription" style="display: none;">
           <div class="card" style="padding: var(--space-xl); margin-bottom: var(--space-xl);">
-            <h3 style="margin-bottom: var(--space-lg);">💳 Subscription Details</h3>
+            <h3 style="margin-bottom: var(--space-lg);"><i class="fas fa-credit-card" style="margin-right: 8px;"></i>Subscription Details</h3>
             <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-md); margin-bottom: var(--space-xl);">
               <div style="padding: var(--space-lg); background: var(--bg-glass); border-radius: var(--radius-md); border: 1px solid var(--border-default);">
                 <div style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 4px;">Plan</div>
@@ -544,7 +548,7 @@
 
         <div class="dashboard-page" id="page-winnings" style="display: none;">
           <div class="card" style="padding: var(--space-xl);">
-            <h3 style="margin-bottom: var(--space-lg);">🏆 All Winnings</h3>
+            <h3 style="margin-bottom: var(--space-lg);"><i class="fas fa-trophy" style="color: var(--accent-400); margin-right: 8px;"></i>All Winnings</h3>
             <table class="winnings-table">
               <thead>
                 <tr>
@@ -577,7 +581,7 @@
 
         <div class="dashboard-page" id="page-settings" style="display: none;">
           <div class="card" style="padding: var(--space-xl);">
-            <h3 style="margin-bottom: var(--space-lg);">⚙️ Account Settings</h3>
+            <h3 style="margin-bottom: var(--space-lg);"><i class="fas fa-cog" style="margin-right: 8px;"></i>Account Settings</h3>
             <form class="auth-form" style="max-width: 500px;">
               <div class="form-group">
                 <label class="form-label">Full Name</label>

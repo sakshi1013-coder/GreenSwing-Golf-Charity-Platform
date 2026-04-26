@@ -1,0 +1,23 @@
+<svg width="256" height="256" viewBox="0 0 256 256" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="shaft" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#94a3b8"/>
+      <stop offset="50%" stop-color="#f8fafc"/>
+      <stop offset="100%" stop-color="#475569"/>
+    </linearGradient>
+    <linearGradient id="head" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#e2e8f0"/>
+      <stop offset="70%" stop-color="#64748b"/>
+      <stop offset="100%" stop-color="#334155"/>
+    </linearGradient>
+    <filter id="shadow" x="0" y="0" width="150%" height="150%">
+      <feDropShadow dx="-2" dy="2" stdDeviation="2" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+  <!-- Shaft -->
+  <rect x="120" y="10" width="8" height="220" rx="4" fill="url(#shaft)" filter="url(#shadow)"/>
+  <!-- Grip -->
+  <rect x="116" y="10" width="16" height="60" rx="3" fill="#1e293b"/>
+  <!-- Head -->
+  <path d="M 115 220 L 70 230 C 60 232, 50 240, 50 250 L 140 250 C 145 250, 150 240, 140 230 C 135 225, 125 220, 115 220 Z" fill="url(#head)" filter="url(#shadow)"/>
+</svg>

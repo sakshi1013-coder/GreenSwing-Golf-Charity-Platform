@@ -1,0 +1,239 @@
+/* ===================================
+   GreenSwing Intro & Anti-Gravity Animations
+   =================================== */
+
+/* --- Cinematic Intro Overlay --- */
+#intro-overlay {
+  position: fixed;
+  inset: 0;
+  background: var(--bg-primary); 
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  transition: opacity 1s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+#intro-overlay.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Background Scene with smooth gradient */
+.intro-scene {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 100%, var(--primary-900) 0%, var(--bg-primary) 70%);
+  transform-origin: center bottom;
+  box-shadow: inset 0 0 150px rgba(0,0,0,0.8);
+}
+
+/* Skip Button */
+.intro-skip-btn {
+  position: absolute;
+  top: var(--space-xl);
+  right: var(--space-xl);
+  z-index: 10001;
+  background: rgba(255,255,255,0.1);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,0.2);
+  color: #fff;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-family: var(--font-body);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.intro-skip-btn:hover {
+  background: rgba(255,255,255,0.2);
+  transform: translateY(-2px);
+}
+
+/* The Tee */
+.intro-tee {
+  position: absolute;
+  left: 50%;
+  bottom: 20%;
+  width: 6px;
+  height: 40px;
+  background: linear-gradient(to right, #ccc, #fff, #ccc);
+  transform: translateX(-50%);
+  border-radius: 2px 2px 0 0;
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+}
+
+/* Ground Shadow */
+.intro-shadow {
+  position: absolute;
+  left: 50%;
+  bottom: 18%;
+  width: 80px;
+  height: 10px;
+  background: radial-gradient(ellipse at center, rgba(0,0,0,0.8) 0%, transparent 70%);
+  transform: translateX(-50%);
+}
+
+/* The Golf Ball */
+.intro-ball {
+  position: absolute;
+  left: 50%;
+  bottom: calc(20% + 40px);
+  width: 28px;
+  height: 28px;
+  transform: translateX(-50%);
+  z-index: 10;
+}
+
+/* The Glow Effect added via JS / GSAP */
+.intro-ball.anti-gravity {
+  box-shadow: 0 0 30px var(--primary-400), 0 0 60px var(--primary-500);
+}
+
+/* The Club */
+.intro-club {
+  position: absolute;
+  left: 50%;
+  bottom: 20%;
+  width: 150px;
+  height: 250px;
+  transform-origin: 100% 100%; /* Pivot point near the grip */
+  transform: translateX(-200px) translateY(-50px) rotate(-40deg);
+  opacity: 0;
+  z-index: 15;
+}
+
+/* Motion Blur Helper Class */
+.motion-blur {
+  filter: blur(2px) drop-shadow(-5px 0 10px rgba(255,255,255,0.5));
+}
+
+/* Impact Flash */
+.impact-flash {
+  position: absolute;
+  left: 50%;
+  bottom: calc(20% + 40px);
+  width: 50px;
+  height: 50px;
+  background: radial-gradient(circle, #fff 0%, transparent 70%);
+  transform: translate(-50%, 50%) scale(0);
+  opacity: 0;
+  z-index: 20;
+}
+
+/* Particles for Trail */
+.intro-particle {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: var(--primary-300);
+  border-radius: 50%;
+  pointer-events: none;
+  opacity: 0.8;
+  box-shadow: 0 0 10px var(--primary-400);
+}
+
+/* --- Global Anti-Gravity Theme Additions --- */
+.g-floating {
+  animation: float-slow 6s ease-in-out infinite;
+}
+.g-floating-delay {
+  animation: float-slow 6s ease-in-out 3s infinite;
+}
+
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
+}
+
+/* Auth / Async Loader */
+#global-app-loader {
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 14, 26, 0.85);
+  backdrop-filter: blur(10px);
+  z-index: 10000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+
+#global-app-loader.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.auth-loader-spinner {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 4px solid rgba(16, 185, 129, 0.2);
+  border-top-color: var(--primary-400);
+  animation: spin 1s linear infinite, glow 2s ease-in-out infinite;
+  margin-bottom: var(--space-xl);
+}
+
+.auth-loader-text {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: var(--space-md);
+  text-align: center;
+}
+
+.auth-loader-steps {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.auth-loader-step {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  opacity: 0.5;
+  transform: translateY(10px);
+  transition: all 0.4s ease;
+}
+
+.auth-loader-step.active {
+  color: var(--primary-400);
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.auth-loader-step.completed {
+  color: var(--success);
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.auth-loader-step i {
+  width: 20px;
+  text-align: center;
+}
+
+/* Page Transition Wrapper */
+.main-wrapper {
+  opacity: 0;
+  transition: opacity 0.8s ease-out;
+}
+body.loaded .main-wrapper {
+  opacity: 1;
+}
+
+/* Stats Count up Animation (Used in Dashboard) */
+.stat-value {
+  transition: all 0.3s ease-out;
+}

@@ -1,13 +1,32 @@
 /**
  * GreenSwing - Admin Panel JavaScript
  * Handles draw engine, user management, winner verification, analytics
+ *
+ * Depends on: gsAuth.js (loaded before this file)
  */
 
-document.addEventListener('DOMContentLoaded', () => {
+// ── Admin-only auth guard ──
+GsAuth.checkAuth(true);
+
+document.addEventListener('DOMContentLoaded', function () {
+  // Populate admin user info from session
+  var u = GsAuth.getUser();
+  if (u) {
+    var nameEl   = document.getElementById('user-name');
+    var emailEl  = document.getElementById('user-email');
+    var avatarEl = document.getElementById('user-avatar');
+    if (nameEl)   nameEl.textContent   = u.name  || 'Admin';
+    if (emailEl)  emailEl.textContent  = u.email || 'admin@greenswing.com';
+    if (avatarEl) avatarEl.textContent = u.name
+      ? u.name.split(' ').map(function (n) { return n[0]; }).join('').toUpperCase()
+      : 'AD';
+  }
+
   initAdminDrawEngine();
   initAdminUserTable();
   initAdminFilters();
   initAdminActions();
+  initAdminLogout();
 });
 
 // ===== Draw Engine =====
@@ -200,13 +219,28 @@ function initAdminActions() {
   }
 
   // Mini chart bar hover effects
-  document.querySelectorAll('.mini-chart-bar').forEach(bar => {
+  document.querySelectorAll('.mini-chart-bar').forEach(function (bar) {
     bar.style.cursor = 'pointer';
     bar.addEventListener('mouseenter', function() {
       this.style.transform = 'scaleY(1.05)';
     });
     bar.addEventListener('mouseleave', function() {
       this.style.transform = 'scaleY(1)';
+    });
+  });
+}
+
+// ── Admin logout ──
+function initAdminLogout() {
+  // Wire any element with id="admin-logout" or id="sidebar-user"
+  ['admin-logout', 'sidebar-user', 'logout-btn'].forEach(function (id) {
+    var el = document.getElementById(id);
+    if (!el) return;
+    el.style.cursor = 'pointer';
+    el.addEventListener('click', function () {
+      if (confirm('Sign out of Admin Panel?')) {
+        GsAuth.logout();
+      }
     });
   });
 }

@@ -8,7 +8,12 @@
   <link rel="stylesheet" href="../css/global.css">
   <link rel="stylesheet" href="../css/dashboard.css">
   <link rel="stylesheet" href="../css/admin.css">
+  <link rel="stylesheet" href="../css/animations.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <!-- Auth + Loader must load first to prevent flash and guard routes -->
+  <script src="../js/loader.js"></script>
+  <script src="../js/gsAuth.js"></script>
+  <script src="../js/animation.js"></script>
 </head>
 <body>
 
@@ -17,8 +22,8 @@
     <!-- Admin Sidebar -->
     <aside class="sidebar" id="sidebar">
       <div class="sidebar-header">
-        <a href="../index.html" class="sidebar-logo">
-          <span class="logo-icon">⛳</span>
+        <a href="admin.html" class="sidebar-logo">
+          <span class="logo-icon"><i class="fas fa-golf-ball"></i></span>
           GreenSwing
         </a>
       </div>
@@ -60,13 +65,17 @@
       </nav>
 
       <div class="sidebar-footer">
-        <div class="sidebar-user">
-          <div class="sidebar-user-avatar" style="background: var(--gradient-accent);">AD</div>
+        <div class="sidebar-user" id="sidebar-user" style="cursor:pointer;" title="Click to sign out">
+          <div class="sidebar-user-avatar" style="background: var(--gradient-accent);" id="user-avatar">AD</div>
           <div class="sidebar-user-info">
-            <div class="sidebar-user-name">Admin User</div>
-            <div class="sidebar-user-email">admin@greenswing.com</div>
+            <div class="sidebar-user-name" id="user-name">Admin User</div>
+            <div class="sidebar-user-email" id="user-email">admin@greenswing.com</div>
           </div>
+          <i class="fas fa-sign-out-alt" style="color: var(--text-muted); font-size: 0.85rem;"></i>
         </div>
+        <button class="btn btn-ghost btn-sm" id="logout-btn" style="width:100%;margin-top:8px;color:var(--error);font-size:0.8rem;">
+          <i class="fas fa-power-off"></i> Sign Out
+        </button>
       </div>
     </aside>
 
@@ -338,7 +347,7 @@
         <!-- Admin Draw Manager -->
         <div class="dashboard-page" id="page-admin-draws" style="display: none;">
           <div class="draw-manager card">
-            <h3 style="margin-bottom: var(--space-xl);">🎱 Draw Manager — March 2026</h3>
+            <h3 style="margin-bottom: var(--space-xl);"><i class="fas fa-ticket-alt" style="margin-right: 8px;"></i>Draw Manager — March 2026</h3>
 
             <div class="draw-config">
               <div class="draw-config-card">
@@ -378,7 +387,7 @@
             </button>
 
             <div id="draw-results" style="display: none; margin-top: var(--space-xl); padding: var(--space-xl); background: rgba(16, 185, 129, 0.05); border-radius: var(--radius-md); border: 1px solid var(--border-accent);">
-              <h4 style="margin-bottom: var(--space-md); text-align: center;">🎉 Draw Results</h4>
+              <h4 style="margin-bottom: var(--space-md); text-align: center;"><i class="fas fa-gift" style="margin-right: 8px;"></i>Draw Results</h4>
               <div style="display: flex; justify-content: center; gap: var(--space-md); margin-bottom: var(--space-lg);">
                 <div class="score-ball matched" style="width: 60px; height: 60px; font-size: 1.3rem;" id="draw-ball-1">--</div>
                 <div class="score-ball matched" style="width: 60px; height: 60px; font-size: 1.3rem;" id="draw-ball-2">--</div>
@@ -418,7 +427,7 @@
               </thead>
               <tbody>
                 <tr>
-                  <td><div class="table-user"><span style="font-size: 1.5rem;">🌍</span><div><div class="table-user-name">Green Earth Fund</div><div class="table-user-email">greenearth.org</div></div></div></td>
+                  <td><div class="table-user"><span style="font-size: 1.5rem; display: flex; align-items: center; justify-content: center;"><i class="fas fa-globe-americas" style="color: var(--primary-500);"></i></span><div><div class="table-user-name">Green Earth Fund</div><div class="table-user-email">greenearth.org</div></div></div></td>
                   <td>Environment</td>
                   <td>380</td>
                   <td class="amount">£18,240</td>
@@ -426,7 +435,7 @@
                   <td><div class="table-actions"><button class="table-action-btn"><i class="fas fa-pen"></i></button><button class="table-action-btn reject"><i class="fas fa-trash"></i></button></div></td>
                 </tr>
                 <tr>
-                  <td><div class="table-user"><span style="font-size: 1.5rem;">🏥</span><div><div class="table-user-name">Health Heroes UK</div><div class="table-user-email">healthheroes.org.uk</div></div></div></td>
+                  <td><div class="table-user"><span style="font-size: 1.5rem; display: flex; align-items: center; justify-content: center;"><i class="fas fa-hospital" style="color: var(--error);"></i></span><div><div class="table-user-name">Health Heroes UK</div><div class="table-user-email">healthheroes.org.uk</div></div></div></td>
                   <td>Healthcare</td>
                   <td>430</td>
                   <td class="amount">£22,150</td>
@@ -434,7 +443,7 @@
                   <td><div class="table-actions"><button class="table-action-btn"><i class="fas fa-pen"></i></button><button class="table-action-btn reject"><i class="fas fa-trash"></i></button></div></td>
                 </tr>
                 <tr>
-                  <td><div class="table-user"><span style="font-size: 1.5rem;">📚</span><div><div class="table-user-name">Future Minds</div><div class="table-user-email">futureminds.org</div></div></div></td>
+                  <td><div class="table-user"><span style="font-size: 1.5rem; display: flex; align-items: center; justify-content: center;"><i class="fas fa-book" style="color: var(--info);"></i></span><div><div class="table-user-name">Future Minds</div><div class="table-user-email">futureminds.org</div></div></div></td>
                   <td>Education</td>
                   <td>290</td>
                   <td class="amount">£15,680</td>
@@ -460,7 +469,7 @@
             </div>
 
             <div class="verification-card card-glass">
-              <div class="verification-proof">📸</div>
+              <div class="verification-proof" style="display: flex; align-items: center; justify-content: center;"><i class="fas fa-camera"></i></div>
               <div class="verification-info">
                 <h5>James Mitchell — 4-Match Winner</h5>
                 <div class="verification-meta">
@@ -484,7 +493,7 @@
             </div>
 
             <div class="verification-card card-glass">
-              <div class="verification-proof">📸</div>
+              <div class="verification-proof" style="display: flex; align-items: center; justify-content: center;"><i class="fas fa-camera"></i></div>
               <div class="verification-info">
                 <h5>Sarah Parker — 3-Match Winner</h5>
                 <div class="verification-meta">
@@ -508,7 +517,7 @@
             </div>
 
             <div class="verification-card card-glass">
-              <div class="verification-proof">📸</div>
+              <div class="verification-proof" style="display: flex; align-items: center; justify-content: center;"><i class="fas fa-camera"></i></div>
               <div class="verification-info">
                 <h5>Robert Khan — 3-Match Winner</h5>
                 <div class="verification-meta">
